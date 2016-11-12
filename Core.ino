@@ -14,18 +14,15 @@
 ///Constants
 #define DATA_LED_PIN   13 // D13
 #define RGB_PIN        13 // D13
-#define BUZZER         8  // D8
-#define LEFT_MOTOR     7  // D7 ///TODO: Know if it's correct!
-#define RIGHT_MOTOR    4  // D4 ///TODO: Know if it's correct!
-#define IR_PROXIMITY_1 0  // A0 ///Front Side
-#define IR_PROXIMITY_2 1  // A1 ///Left Side
+#define MOTOR_LEFT     7  // D7 ///TODO: Know if it's correct!
+#define MOTOR_RIGHT    4  // D4 ///TODO: Know if it's correct!
+#define PX_F 0  // A0 ///Front Side
+#define PX_L 1  // A1 ///Left Side
 
 #define IR_PROXIMITY_MODEL 430 // GP2YA41SK0F ///TODO: Need to be confirmed!
 #define NUM_RGB_LEDS   2
 
 ///Objects
-SharpIR proximity1(IR_PROXIMITY_1, IR_PROXIMITY_MODEL);
-SharpIR proximity2(IR_PROXIMITY_2, IR_PROXIMITY_MODEL);
 CRGB rgb_strip[NUM_RGB_LEDS];
 
 void setup() {
@@ -33,46 +30,19 @@ void setup() {
   //pinMode(13, OUTPUT);
   pinMode(9, OUTPUT);
   FastLED.addLeds<NEOPIXEL, RGB_PIN>(rgb_strip, NUM_RGB_LEDS);
-  pinMode(7, OUTPUT);
-  pinMode(4, OUTPUT);
-  digitalWrite(4, LOW);
-  analogWrite(6, 255);
-  analogWrite(5, 200);
-  pinMode(2, INPUT);
+  pinMode(MOTOR_LEFT, OUTPUT);
+  pinMode(MOTOR_RIGHT, OUTPUT);
+  digitalWrite(MOTOR_RIGHT, LOW);
+  pinMode(NUM_RGB_LEDS, INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  /*// put your main code here, to run repeatedly:
-  leds[0].setRGB( 10, 10, 10);
-  FastLED.show();
-  delay(300);
-  leds[1].setRGB( 10, 10, 10);
-  FastLED.show();
-  digitalWrite(13,HIGH);
-  delay(300);
-  digitalWrite(13,LOW);
-  delay(300);*/
-   /*for(int i = 1000 ; i < 2000; i++)
-    {
-      tone(8, i);
-      delay(1);
-    }
-    for(int i = 2000 ; i > 1000; i--)
-    {
-      tone(8, i);
-      delay(1);
-  }*/
-    /*Serial.println(analogRead(2));
-    delay(300);*/
-
-    //Serial.println(analogRead(A0)); //lim 300
-    //Serial.println(analogRead(A1)); //lim 150
-
-    if (analogRead(IR_PROXIMITY_1) > 300){
-      if(analogRead(IR_PROXIMITY_2) > 150){
-        delay(300);
-
+    if (analogRead(SENSOR_FRONT) > 300){
+      if(analogRead(SENSOR_LEFT) > 150){
+          
+      } else {
+        
       }
     }
     delay(200);
@@ -80,18 +50,29 @@ void loop() {
 
 enum Direction{
   RIGHT,
-  LEFT
+  LEFT,
+  FRONT
 };
 
 inline void rotate(Direction d){
+  delay(300);
   switch(d){
     case RIGHT:
-      digitalWrite(4, HIGH);
-      digitalWrite(7, LOW);
+      digitalWrite(MOTOR_RIGHT, HIGH);
+      digitalWrite(MOTOR_LEFT, LOW);
       break;
     case LEFT:
-      digitalWrite(4, LOW);
-      digitalWrite(7, HIGH);
+      digitalWrite(MOTOR_RIGHT, LOW);
+      digitalWrite(MOTOR_LEFT, HIGH);
+      break;
+    case FRONT:
+      digitalWrite(MOTOR_RIGHT, HIGH);
+      digitalWrite(MOTOR_LEFT, HIGH);
       break;
   }
+}
+
+inline void walk(){
+  analogWrite(MOTOR_RIGHT, 255);
+  analogWrite(MOTOR_RIGHT, 255);
 }
