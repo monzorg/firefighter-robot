@@ -3,7 +3,6 @@ Firefighter Robot firmware based on Arduino Board (mBot Board - mCore)
 
 ## Dependencies
 - FastLED
-- SharpIR
 
 ## Circuits Pinout
 ![IMG1](docs/Mcore.png)
