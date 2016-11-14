@@ -12,7 +12,7 @@
   @license MIT License
   @authors "Filipe Laíns" <filipe.lains@gmail.com>
   @authors "Luís Ferreira" <lsferreira169@gmail.com>
-  @version BETA 0.3 14/11/2016
+  @version BETA 0.4 14/11/2016
 */
 
 // External Libraries
@@ -37,7 +37,9 @@ enum Direction{
   FRONT
 };
 
-// Setup
+/**
+     Setup Code
+*/
 void setup() {
   //pinMode(13, OUTPUT);
   pinMode(9, OUTPUT);
@@ -48,14 +50,19 @@ void setup() {
   Serial.begin(9600);
 }
 
-// Loop
+/**
+     Loop Code
+*/
 void loop() {
     if (analogRead(SENSOR_FRONT) > 300){
       if(analogRead(SENSOR_LEFT) > 150){
           stop();
-          rotate();
+          rotate(RIGHT);
+          wlak();
       } else {
-        stop();
+          stop();
+          rotate(LEFT);
+          wlak();
       }
     } else {
       walk();
@@ -63,7 +70,11 @@ void loop() {
     delay(200);
 }
 
-// Rotate
+/**
+     Rotates
+     
+     @param direction
+*/
 inline void rotate(Direction d){
   delay(300);
   switch(d){
@@ -82,19 +93,26 @@ inline void rotate(Direction d){
   }
 }
 
-// Walk
-inline void walk(){
+/**
+     Walks
+*/inline void walk(){
   digitalWrite(MOTOR_RIGHT, HIGH);
   digitalWrite(MOTOR_LEFT, HIGH);
 }
 
-// Walk
+/**
+     Walks
+     
+     @param speed
+*/
 inline void walk(int speed){
   analogWrite(MOTOR_RIGHT, speed);
   analogWrite(MOTOR_LEFT, speed);
 }
 
-// Stop
+/**
+     Stops
+*/
 inline void stop(){
   digitalWrite(MOTOR_RIGHT, LOW);
   digitalWrite(MOTOR_LEFT, LOW);
