@@ -54,8 +54,8 @@ void setup() {
      Loop Code
 */
 void loop() {
-    if (analogRead(SENSOR_FRONT) > 300){
-      if(analogRead(SENSOR_LEFT) > 150){
+    if (analogRead(PX_F) > 300){
+      if(analogRead(PX_L) > 150){
           stop();
           rotate(RIGHT);
           walk();
