@@ -58,11 +58,11 @@ void loop() {
       if(analogRead(SENSOR_LEFT) > 150){
           stop();
           rotate(RIGHT);
-          wlak();
+          walk();
       } else {
           stop();
           rotate(LEFT);
-          wlak();
+          walk();
       }
     } else {
       walk();
