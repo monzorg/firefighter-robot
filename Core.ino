@@ -95,7 +95,8 @@ inline void rotate(Direction d){
 
 /**
      Walks
-*/inline void walk(){
+*/
+inline void walk(){
   digitalWrite(MOTOR_RIGHT, HIGH);
   digitalWrite(MOTOR_LEFT, HIGH);
 }
