@@ -12,15 +12,11 @@
   @license MIT License
   @authors "Filipe Laíns" <filipe.lains@gmail.com>
   @authors "Luís Ferreira" <lsferreira169@gmail.com>
-  @version BETA 0.5 14/11/2016
+  @version ALPHA 0.5 14/11/2016
 */
 
 #pragma once
 
-#define DATA_LED_PIN   13 // D13
-#define RGB_PIN        13 // D13
-#define MOTOR_LEFT     7  // D7 - TODO: Know if it's correct!
-#define MOTOR_RIGHT    4  // D4 - TODO: Know if it's correct!
 #define PX_F 0  // A0 - Front Side
 #define PX_L 1  // A1 - Left Side
 #define NUM_RGB_LEDS   2
