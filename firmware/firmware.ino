@@ -17,10 +17,31 @@
 #include "init.h"
 
 /**
+     Init Code
+*/
+void setup() {
+  Serial.begin(MSS);
+  FastLED.addLeds<NEOPIXEL, 13>(rgb_strip, MRGBLN);
+}
+
+/**
      Loop Code
 */
 void loop() {
-  //m.forward(255);
-  Serial.println(c.read());
-  delay(1000);
+    int i;
+    int j = 255;
+    for(i = 0; i < 255; i++)
+    {
+        rgb_strip[0] = CRGB(i,0,0);
+        rgb_strip[1] = CRGB(j,0,0);
+        FastLED.show();
+        j--;
+    }
+    for(int i = 255; i > 0; i--)
+    {
+        rgb_strip[0] = CRGB(i,0,0);
+        rgb_strip[1] = CRGB(j,0,0);
+        FastLED.show();
+        j++;
+    }
 }

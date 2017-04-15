@@ -15,7 +15,7 @@ int Compass::read() {
     //request the high and low byte from register 2
     Wire.requestFrom(MCA, 2);
     while(Wire.available() < 2);
-    byte lowB = Wire.read();
     byte highB = Wire.read();
-    return (highB<<8 + lowB)/10;
+    byte lowB = Wire.read();
+    return ((highB<<8) + lowB)/10;
 }
