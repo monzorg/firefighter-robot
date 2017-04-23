@@ -6,7 +6,7 @@ Compass::Compass() {
     Wire.begin();
 }
 
-int Compass::read() {
+unsigned int Compass::read() {
     //send register 2 to read the angle
     Wire.beginTransmission(MCA);
     Wire.write(2);
@@ -17,5 +17,6 @@ int Compass::read() {
     while(Wire.available() < 2);
     byte highB = Wire.read();
     byte lowB = Wire.read();
-    return ((highB<<8) + lowB)/10;
+    val = ((highB<<8) + lowB)/10;
+    return val;
 }

@@ -4,5 +4,6 @@
 
 struct Compass {
     Compass();
-    int read();
+    unsigned int read();
+    unsigned int val;
 };
