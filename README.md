@@ -7,7 +7,7 @@ Firefighter Robot firmware based on Arduino Board (mBot Board - mCore)
 - FastLED
 
 ## Circuits Pinout
-![IMG1](docs/Mcore.png)
+![IMG1](docs/circuit_scheme.png)
 
 ### Contributors
  - **Luís Ferreira** - General Developer
