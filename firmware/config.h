@@ -16,15 +16,18 @@
 #pragma once
 
 /// Motors
-#define MMRD  4 // Right Direction
-#define MMLD  7 // Left Direction
-#define MMRP  5 // Right PWM
-#define MMLP  6 // Left PWM
+#define MMRD   4 // Right Direction
+#define MMLD   7 // Left Direction
+#define MMRP   5 // Right PWM
+#define MMLP   6 // Left PWM
+#define MMMIN  100
 
 /// Proximity Sensors
-#define MPXF  0 // Front
-#define MPXL  1 // Left
-#define MPXR  2 // Right
+#define MPXF   A0 // Front
+#define MPXL   A1 // Leftm
+#define MPXR   A2 // Right
+#define MPXDV  250
+#define MPXMLV 500
 
 // RGB LEDs
 #define MRGBL  13 // PIN
@@ -34,3 +37,5 @@
 #define MDL    13 // Data LED
 #define MFP    9 // Fan PIN
 #define MSS    9600 // Serial Speed
+#define MSB    7 // Button PIN
+#define MLS
