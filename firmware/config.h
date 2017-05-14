@@ -28,6 +28,9 @@
 #define MPXR   A2 // Right
 #define MPXDV  250
 #define MPXMLV 500
+// Error Correction
+#define SC     10 // Sample Count
+#define MXE    25 // Max Error
 
 // RGB LEDs
 #define MRGBL  13 // PIN
