@@ -1,12 +1,12 @@
 /**
-**   /\/\   ___  _ __  _______  _ __ __ _ 
+**   /\/\   ___  _ __  _______  _ __ __ _
 **  /    \ / _ \| '_ \|_  / _ \| '__/ _` |
 ** / /\/\ \ (_) | | | |/ / (_) | | | (_| |
 ** \/    \/\___/|_| |_/___\___/|_|  \__, |
-**                                  |___/ 
+**                                  |___/
 ** Firefighter Robot
 ** Firefighter Robot firmware based on Arduino Board
-** 
+**
 ** @repo firefighter-robot
 ** @license MIT License
 ** @authors "Filipe Laíns" <filipe.lains@gmail.com>
@@ -24,8 +24,8 @@
 Motor::Motor(byte ld, byte rd, byte l, byte r) :
   ld(ld), rd(rd), l(l), r(r)
 {
-  pinMode(ld, OUTPUT);
-  pinMode(rd, OUTPUT);
+    pinMode(ld, OUTPUT);
+    pinMode(rd, OUTPUT);
 }
 
 /* @brief This function move the motors
@@ -65,10 +65,10 @@ void Motor::forward(MDirection d, byte s)
 */
 void Motor::backward(byte s)
 {
-  digitalWrite(rd, HIGH);
-  digitalWrite(ld, HIGH);
-  analogWrite(r, s);
-  analogWrite(l, s);
+    digitalWrite(rd, HIGH);
+    digitalWrite(ld, HIGH);
+    analogWrite(r, s);
+    analogWrite(l, s);
 }
 
 
@@ -104,7 +104,7 @@ byte Motor::getSpeed(MDirection d) const {
 }
 
 inline void Motor::setSpeed(MDirection d, byte s){
-  
+
 }
 
 inline void Motor::setSpeed(byte ls, byte rs)
@@ -112,4 +112,3 @@ inline void Motor::setSpeed(byte ls, byte rs)
   this->ls = ls;
   this->rs = rs;
 }
-

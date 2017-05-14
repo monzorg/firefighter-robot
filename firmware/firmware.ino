@@ -30,6 +30,7 @@ void setup() {
 
     //General initial code
     pinMode(MFP, OUTPUT);
+    pinMode(MMLD, OUTPUT); //Temporary code fix
     analogButtons.add(sbtn);
     FastLED.addLeds<NEOPIXEL, 13>(rgb_strip, MRGBLN);
     Serial.begin(MSS);
@@ -107,6 +108,7 @@ void loop() {
         Serial.print("Right PX: ");
         Serial.println(px.Right);
     }
+
     if(px.Front >= MPXDV) {
         if(px.Left >= MPXDV || px.Right >= MPXDV) {
             if(px.Left >= MPXDV && px.Right >= MPXDV) {
@@ -151,6 +153,9 @@ void loop() {
                     }
                 }
             }
+        } else {
+            m.backward(LEFT, 128);
+            m.backward(RIGHT, 255);
         }
     } else if(px.Left >= MPXDV || px.Right >= MPXDV) {
         if(px.Left >= MPXDV && px.Right >= MPXDV) {

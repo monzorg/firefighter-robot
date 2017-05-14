@@ -1,6 +1,6 @@
 PROJECT_DIR       = $(CURDIR)
 ARDUINO_DIR       = /usr/share/arduino
-ARDUINO_LIBS      = ArduinoThread Wire FastLED SharpIR Arduino-Scheduler AnalogButtons
+ARDUINO_LIBS      = Wire FastLED AnalogButtons
 USER_LIB_PATH    :=  $(PROJECT_DIR)/../ext
 AVRDUDE_CONF	  = /etc/avrdude.conf
 # Only for archlinux
