@@ -16,6 +16,7 @@
 #include "config.h"
 #include "init.h"
 #include "fw_startled.h"
+#include "Wire.h"
 
 //#include <Scheduler.h>
 
@@ -34,6 +35,7 @@ void setup() {
     analogButtons.add(sbtn);
     FastLED.addLeds<NEOPIXEL, 13>(rgb_strip, MRGBLN);
     Serial.begin(MSS);
+    Wire.begin();
     //Scheduler.startLoop([]{Serial.println(c.read());});
 
     //Second Tone: Finish initial code loading
@@ -96,6 +98,7 @@ void loop() {
     px.read();
     c.read();
     if(Debug) {
+      /*
         Serial.print("Compass: ");
         Serial.println(c.val);
         if(px.Front >= MPXDV) Serial.print("*");
@@ -107,6 +110,26 @@ void loop() {
         if(px.Right >= MPXDV) Serial.print("*");
         Serial.print("Right PX: ");
         Serial.println(px.Right);
+
+        long num = 0;
+        for(int i=0; i<1000; i++) {
+          px.read();
+          num += px.Left;
+        }
+        Serial.println(num);
+        num = num / 1000;
+        Serial.println(num);
+
+        Serial.print(px.Front);
+        Serial.print("\t");
+        Serial.print(px.Left);
+        Serial.print("\t");
+        Serial.println(px.Right);
+        */
+
+        Serial.println(ts.read(0));
+
+        return;
     }
 
     if(px.Front >= MPXDV) {

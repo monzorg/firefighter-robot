@@ -2,9 +2,7 @@
 #include "config.h"
 #include "Wire.h"
 
-Compass::Compass() {
-    Wire.begin();
-}
+Compass::Compass() {}
 
 unsigned int Compass::read() {
     //send register 2 to read the angle

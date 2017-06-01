@@ -29,14 +29,15 @@
 #define MPXDV  250
 #define MPXMLV 500
 // Error Correction
-#define SC     10 // Sample Count
-#define MXE    25 // Max Error
+#define MPXSC     10 // Sample Count
+#define MPXMXE    25 // Max Error
 
 // RGB LEDs
 #define MRGBL  13 // PIN
 #define MRGBLN 2 // Number of RGB Leds in the LED strip
 
 #define MCA    0x60 // Compass Address
+#define MTSA   0x68 // TPA81 Thermal Sensor Address
 #define MDL    13 // Data LED
 #define MFP    9 // Fan PIN
 #define MSS    9600 // Serial Speed
