@@ -58,7 +58,7 @@ int read_correction(int sample_count, int input){
 }
 */
 
-int read_correction(int sample_count, input){
+/*int read_correction(int sample_count, int input){
   int a[sample_count];
   int a2[sample_count];
   int av = 0;
@@ -83,10 +83,10 @@ int read_correction(int sample_count, input){
   av2 = av2 / count;
 
   return av2;
-}
+}*/
 
 void PX::read() {
-    int la[SC] = multiple_read(SC, l);
+    //int la[SC] = multiple_read(SC, l);
     Left = analogRead(l);
     Right = analogRead(r);
     Front = analogRead(f);

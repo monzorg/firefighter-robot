@@ -17,5 +17,5 @@ public:
     int Left, Right, Front;
 private:
     const int l, r, f;
-    int read_correction();
+    //int read_correction();
 };
