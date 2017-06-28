@@ -24,17 +24,23 @@
 
 /// Proximity Sensors
 #define MPXF   A0 // Front
-#define MPXL   A1 // Leftm
+#define MPXL   A1 // Left
 #define MPXR   A2 // Right
 #define MPXDV  250
 #define MPXMLV 500
-// Error Correction
+/// Error Correction
 #define MPXSC     10 // Sample Count
 #define MPXMXE    25 // Max Error
 
-// RGB LEDs
+/// RGB LEDs
 #define MRGBL  13 // PIN
 #define MRGBLN 2 // Number of RGB Leds in the LED strip
+
+/// Infrared
+#define MIRP    2 // IR PIN
+#define MIRSB   2200 // Start BIT
+#define MIRB1   1600 // BIT1
+#define MIRB0   560 // BIT0
 
 #define MCA    0x60 // Compass Address
 #define MTSA   0x68 // TPA81 Thermal Sensor Address

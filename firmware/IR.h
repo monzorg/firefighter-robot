@@ -1,5 +1,8 @@
 #pragma once
 
+#include "arduinoConfig.h"
+#include "config.h"
+
 enum struct IRByte : unsigned char {
     A = 0x00,
     B = 0x00,
@@ -22,4 +25,10 @@ enum struct IRByte : unsigned char {
     N7 = 0x00,
     N8 = 0x00,
     N9 = 0x00
-}
+};
+
+class IR {
+public:
+    IR();
+    int read(void (*)());
+};

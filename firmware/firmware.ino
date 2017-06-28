@@ -127,10 +127,12 @@ void loop() {
         Serial.println(px.Right);
         */
 
-        Serial.println(ts.read(0));
-
+        /*int key = ir.read([](){
+        }); Serial.println(key);*/
         return;
     }
+
+    
 
     if(px.Front >= MPXDV) {
         if(px.Left >= MPXDV || px.Right >= MPXDV) {
