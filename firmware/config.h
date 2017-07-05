@@ -42,7 +42,8 @@
 #define MIRB1   1600 // BIT1
 #define MIRB0   560 // BIT0
 
-#define MCA    0x60 // Compass Address
+//#define MCA    0x60 // Compass Address
+#define MCA		 0x0C // New Compass Address
 #define MTSA   0x68 // TPA81 Thermal Sensor Address
 #define MDL    13 // Data LED
 #define MFP    9 // Fan PIN
