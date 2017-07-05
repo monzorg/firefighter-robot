@@ -31,8 +31,8 @@ int16_t* Compass::read() {
 		uint8_t mag[7];
     I2Cread(0x03,7,mag);
 
-		val[0]=(-(mag[3]<<8 | mag[2]))+200;
-    val[1]=(-(mag[1]<<8 | mag[0]))-70;
-    val[2]=(-(mag[5]<<8 | mag[4]))-700;
+		val[0]=-(mag[3]<<8 | mag[2]); //+200
+    val[1]=-(mag[1]<<8 | mag[0]); //-70
+    val[2]=-(mag[5]<<8 | mag[4]); // -700
     return val;
 }

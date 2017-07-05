@@ -10,7 +10,8 @@
 #include "motor.h"
 #include "compass.h"
 #include "px.h"
-#include "IR.h"
+//#include "IR.h"
+#include "AI.h"
 #include "tpa81.h"
 
 bool shouldStart = false;
@@ -18,10 +19,11 @@ bool remoteDebug = false;
 bool Debug = false;
 
 CRGB rgb_strip[MRGBLN];
+AI ai;
 Motor m(MMLD, MMRD, MMLP, MMRP);
 PX px(MPXL, MPXR, MPXF);
 Compass c;
-IR ir;
+//IR ir;
 TPASensor ts;
 
 #include "fw_startbtn.h"

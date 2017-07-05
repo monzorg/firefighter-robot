@@ -32,11 +32,13 @@ void setup() {
     //General initial code
     pinMode(MFP, OUTPUT);
     pinMode(MMLD, OUTPUT); //Temporary code fix
+    pinMode(MLDL, INPUT);
+    pinMode(MLDR, INPUT);
     analogButtons.add(sbtn);
     FastLED.addLeds<NEOPIXEL, 13>(rgb_strip, MRGBLN);
     Serial.begin(MSS);
     Wire.begin();
-    //Scheduler.startLoop([]{Serial.println(c.read());});
+    //Scheduler.startLoop([]{Serial.println(c.read()[0]);});
 
     //Second Tone: Finish initial code loading
     tone(8, 1000, 300);
@@ -99,8 +101,6 @@ void loop() {
     c.read();
     if(Debug) {
       /*
-        Serial.print("Compass: ");
-        Serial.println(c.val);
         if(px.Front >= MPXDV) Serial.print("*");
         Serial.print("Front PX: ");
         Serial.println(px.Front);
@@ -119,21 +119,85 @@ void loop() {
         Serial.println(num);
         num = num / 1000;
         Serial.println(num);
-
-        Serial.print(px.Front);
-        Serial.print("\t");
-        Serial.print(px.Left);
-        Serial.print("\t");
-        Serial.println(px.Right);
         */
 
         /*int key = ir.read([](){
         }); Serial.println(key);*/
+
+        //Compass
+        Serial.print("C\t");
+        Serial.println(c.val[0]);
+
+        //Line Detector
+        Serial.print("LD\tL");
+        Serial.print(digitalRead(MLDL));
+        Serial.print("\tR");
+        Serial.println(digitalRead(MLDR));
+
+        //PX
+        Serial.print("PX \tF");
+        Serial.print(px.Front);
+        Serial.print("\tL");
+        Serial.print(px.Left);
+        Serial.print("\tR");
+        Serial.println(px.Right);
+
+        //TPA81
+        Serial.print("\nTS \tA");
+        Serial.println(ts.read(0));
+        Serial.print("TS2 \t");
+        Serial.print(ts.read(1));
+        Serial.print("\t");
+        Serial.println(ts.read(2));
+        Serial.print("TS4 \t");
+        Serial.print(ts.read(3));
+        Serial.print("\t");
+        Serial.println(ts.read(4));
+        Serial.print("TS6 \t");
+        Serial.print(ts.read(5));
+        Serial.print("\t");
+        Serial.println(ts.read(6));
+        Serial.print("TS8 \t");
+        Serial.print(ts.read(7));
+        Serial.print("\t");
+        Serial.println(ts.read(8));
+
+        //delay(1000);
+        delay(400);
+        Serial.write(27);
+        Serial.print("[2J"); // clear screen
+        Serial.write(27); // ESC
+        Serial.print("[H");
         return;
     }
 
-    
+    m.forward(LEFT, 50);
+    m.backward(RIGHT, 50);
+    const unsigned int cv = c.read()[0];
+    const unsigned int acv = cv + 120;
+    bool bcv = false;
+    int pang;
+    int ang;
+    if(acv > 360) {
+        pang = acv - 360;
+        bcv = true;
+    }
+    else pang = acv;
+    while(ang < 120 && ang != 359) {
+        if(bcv && cv > c.read()[0]) {
+            ang = 360 - abs(cv - c.read()[0]);
+        }
+        else ang = c.read()[0] - cv;
+        Serial.print(c.read()[0]);
+        Serial.print("\t");
+        Serial.println(ang);
+    }
+    m.forward(0);
+    delay(100);
+    //ai.isInsideRoom(m);
+    //m.forward(0);
 
+    /*
     if(px.Front >= MPXDV) {
         if(px.Left >= MPXDV || px.Right >= MPXDV) {
             if(px.Left >= MPXDV && px.Right >= MPXDV) {
@@ -150,15 +214,15 @@ void loop() {
                     px.read();
                 }
                 delay(MPXMLV);
-                const unsigned int cv = c.read();
+                const unsigned int cv = c.read()[0];
 
                 if(px.Left >= MPXDV) {
-                    while(abs(c.read() - cv) <= 90) {
+                    while(abs(c.read()[0] - cv) <= 90) {
                         m.forward(LEFT, 255);
                         m.backward(RIGHT, 255);
                     }
                 } else if(px.Right >= MPXDV) {
-                    while(abs(c.read() - cv) <= 90) {
+                    while(abs(c.read()[0] - cv) <= 90) {
                         m.backward(LEFT, 255);
                         m.forward(RIGHT, 255);
                     }
@@ -167,12 +231,12 @@ void loop() {
                 const unsigned int cv = c.val;
 
                 if(px.Left >= MPXDV) {
-                    while(abs(c.read() - cv) <= 90) {
+                    while(abs(c.read()[0] - cv) <= 90) {
                         m.forward(LEFT, 255);
                         m.backward(RIGHT, 255);
                     }
                 } else if(px.Right >= MPXDV) {
-                    while(abs(c.read() - cv) <= 90) {
+                    while(abs(c.read()[0] - cv) <= 90) {
                         m.backward(LEFT, 255);
                         m.forward(RIGHT, 255);
                     }
@@ -199,5 +263,5 @@ void loop() {
             m.forward(LEFT, MMMIN);
             m.forward(RIGHT, 255);
         }
-    } else m.forward(255);
+    } else m.forward(255);*/
 }
