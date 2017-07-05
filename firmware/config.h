@@ -26,15 +26,21 @@
 #define MPXF   A0 // Front
 #define MPXL   A1 // Left
 #define MPXR   A2 // Right
-#define MPXDV  250
-#define MPXMLV 500
-/// Error Correction
+#define MPXDM  310 // Direction Max Value
+#define MPXDRD 1000 // Door Rotate Delay
+#define MPXFM  475 // Front Max Value
+/// PX Error Correction
 #define MPXSC     10 // Sample Count
 #define MPXMXE    25 // Max Error
 
 /// RGB LEDs
 #define MRGBL  13 // PIN
 #define MRGBLN 2 // Number of RGB Leds in the LED strip
+
+/// Line Detector
+#define MLDL 11 // Line Detector Left
+#define MLDR 12 // Line Detector Right
+#define MLDI 1	// Line Detector Inverter  <------ /!\
 
 /// Infrared
 #define MIRP    2 // IR PIN
