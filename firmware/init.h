@@ -22,7 +22,7 @@ CRGB rgb_strip[MRGBLN];
 AI ai;
 Motor m(MMLD, MMRD, MMLP, MMRP);
 PX px(MPXL, MPXR, MPXF);
-Compass c;
+Compass* c = new Compass();
 //IR ir;
 TPASensor ts;
 

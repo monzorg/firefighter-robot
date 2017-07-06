@@ -7,7 +7,7 @@ AVRDUDE_CONF	  = /etc/avrdude.conf
 ARDMK_VENDOR      = archlinux-arduino
 BOARD_TAG         = uno
 #BOARD_SUB  		  = atmega328
-MONITOR_BAUDRATE  = 9600
+MONITOR_BAUDRATE  = 115200
 AVR_TOOLS_DIR     = /usr
 AVRDUDE          = /usr/bin/avrdude -v -v -v -v #-v flag for debug purpose!
 #CFLAGS_STD        = -std=gnu11

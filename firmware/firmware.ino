@@ -38,8 +38,9 @@ void setup() {
     FastLED.addLeds<NEOPIXEL, 13>(rgb_strip, MRGBLN);
     Serial.begin(MSS);
     Wire.begin();
-    //Scheduler.startLoop([]{Serial.println(c.read()[0]);});
+    //Scheduler.startLoop([]{Serial.println(c->read());});
 
+    c = new Compass(MMPU9250);
     //Second Tone: Finish initial code loading
     tone(8, 1000, 300);
     delay(300 * 1.30);
@@ -98,7 +99,7 @@ void setup() {
 */
 void loop() {
     px.read();
-    c.read();
+    c->read();
     if(Debug) {
       /*
         if(px.Front >= MPXDV) Serial.print("*");
@@ -126,7 +127,7 @@ void loop() {
 
         //Compass
         Serial.print("C\t");
-        Serial.println(c.val[0]);
+        Serial.println(c->val);
 
         //Line Detector
         Serial.print("LD\tL");
@@ -163,17 +164,17 @@ void loop() {
         Serial.println(ts.read(8));
 
         //delay(1000);
-        delay(400);
-        Serial.write(27);
+        //delay(400);
+        /*Serial.write(27);
         Serial.print("[2J"); // clear screen
         Serial.write(27); // ESC
-        Serial.print("[H");
+        Serial.print("[H");*/
         return;
     }
 
-    m.forward(LEFT, 50);
-    m.backward(RIGHT, 50);
-    const unsigned int cv = c.read()[0];
+    m.forward(LEFT, 255);
+    m.backward(RIGHT, 255);
+    const unsigned int cv = c->read();
     const unsigned int acv = cv + 120;
     bool bcv = false;
     int pang;
@@ -184,11 +185,11 @@ void loop() {
     }
     else pang = acv;
     while(ang < 120 && ang != 359) {
-        if(bcv && cv > c.read()[0]) {
-            ang = 360 - abs(cv - c.read()[0]);
+        if(bcv && cv > c->read()) {
+            ang = 360 - abs(cv - c->read());
         }
-        else ang = c.read()[0] - cv;
-        Serial.print(c.read()[0]);
+        else ang = c->read() - cv;
+        Serial.print(c->read());
         Serial.print("\t");
         Serial.println(ang);
     }
@@ -214,15 +215,15 @@ void loop() {
                     px.read();
                 }
                 delay(MPXMLV);
-                const unsigned int cv = c.read()[0];
+                const unsigned int cv = c->read();
 
                 if(px.Left >= MPXDV) {
-                    while(abs(c.read()[0] - cv) <= 90) {
+                    while(abs(c->read() - cv) <= 90) {
                         m.forward(LEFT, 255);
                         m.backward(RIGHT, 255);
                     }
                 } else if(px.Right >= MPXDV) {
-                    while(abs(c.read()[0] - cv) <= 90) {
+                    while(abs(c->read() - cv) <= 90) {
                         m.backward(LEFT, 255);
                         m.forward(RIGHT, 255);
                     }
@@ -231,12 +232,12 @@ void loop() {
                 const unsigned int cv = c.val;
 
                 if(px.Left >= MPXDV) {
-                    while(abs(c.read()[0] - cv) <= 90) {
+                    while(abs(c->read() - cv) <= 90) {
                         m.forward(LEFT, 255);
                         m.backward(RIGHT, 255);
                     }
                 } else if(px.Right >= MPXDV) {
-                    while(abs(c.read()[0] - cv) <= 90) {
+                    while(abs(c->read() - cv) <= 90) {
                         m.backward(LEFT, 255);
                         m.forward(RIGHT, 255);
                     }

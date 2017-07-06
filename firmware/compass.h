@@ -3,9 +3,12 @@
 #include "arduinoConfig.h"
 
 struct Compass {
-  Compass();
-	int16_t* read();
-  int16_t val[3];
+    Compass();
+    Compass(uint8_t);
+    uint16_t read();
+    uint16_t val;
+    unsigned int uread();
+    unsigned int uval;
 private:
 	void I2Cread(uint8_t , uint8_t, uint8_t *);
 };
