@@ -20,6 +20,7 @@
 #define MMLD   7 // Left Direction
 #define MMRP   5 // Right PWM
 #define MMLP   6 // Left PWM
+#define MMRRD   1500 // Motor Rectangular Rotate Delay
 #define MMMIN  100
 
 /// Proximity Sensors
@@ -48,10 +49,13 @@
 #define MIRB1   1600 // BIT1
 #define MIRB0   560 // BIT0
 
+/// Thermal Sensor
+#define MTSA   0x68 // TPA81 Thermal Sensor Address
+#define MTSDV  45 // Thermal Sensor Difer Value (in Celsius)
+
 #define MMPU9250 0x68 // MPU9250 Address
 #define MUCA    0x60 // Compass Address
 #define MCA		 0x0C // New Compass Address
-#define MTSA   0x68 // TPA81 Thermal Sensor Address
 #define MDL    13 // Data LED
 #define MFP    9 // Fan PIN
 #define MSS    115200 // Serial Speed

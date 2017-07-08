@@ -14,6 +14,8 @@
 */
 
 #include "motor.h"
+#include "global.h"
+#include "config.h"
 
 /* @brief Motor construct
 ** @param ld  Left Direction PIN
@@ -44,7 +46,7 @@ void Motor::forward(byte s)
 ** @param d Direction (Motor Side)
 ** @param s Speed of the motor
 */
-void Motor::forward(MDirection d, byte s)
+void Motor::forward(Direction d, byte s)
 {
   switch(d)
   {
@@ -76,7 +78,7 @@ void Motor::backward(byte s)
 ** @param d Direction (Motor Side)
 ** @param s Speed of the motor
 */
-void Motor::backward(MDirection d, byte s)
+void Motor::backward(Direction d, byte s)
 {
   switch(d)
   {
@@ -91,7 +93,7 @@ void Motor::backward(MDirection d, byte s)
   }
 }
 
-byte Motor::getSpeed(MDirection d) const {
+byte Motor::getSpeed(Direction d) const {
   switch(d)
   {
     case LEFT:
@@ -103,7 +105,7 @@ byte Motor::getSpeed(MDirection d) const {
   }
 }
 
-inline void Motor::setSpeed(MDirection d, byte s){
+inline void Motor::setSpeed(Direction d, byte s){
 
 }
 
@@ -111,4 +113,20 @@ inline void Motor::setSpeed(byte ls, byte rs)
 {
   this->ls = ls;
   this->rs = rs;
+}
+
+void Motor::rrotate(Direction d, double n, byte s) {
+    switch(d)
+    {
+        case LEFT:
+            this->forward(RIGHT, s);
+            this->backward(LEFT, s);
+            break;
+        case RIGHT:
+            this->forward(LEFT, s);
+            this->backward(RIGHT, s);
+            break;
+    }
+    delay((unsigned long) (n * MMRRD));
+    this->forward(255);
 }

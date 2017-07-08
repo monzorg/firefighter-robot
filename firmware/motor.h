@@ -14,23 +14,20 @@
 */
 
 #include "arduinoConfig.h"
+#include "global.h"
 
 #pragma once
-
-enum MDirection {
-  LEFT,
-  RIGHT
-};
 
 class Motor {
 public:
     Motor(const byte , const byte , const byte , const byte );
     void forward(const byte = 255);
-    void forward(MDirection, const byte = 255);
+    void forward(Direction, const byte = 255);
     void backward(const byte = 255);
-    void backward(MDirection, const byte = 255);
-    inline byte getSpeed(MDirection) const;
-    inline void setSpeed(MDirection, const byte);
+    void backward(Direction, const byte = 255);
+    void rrotate(Direction , double = 1, const byte = 255);
+    inline byte getSpeed(Direction) const;
+    inline void setSpeed(Direction, const byte);
     inline void setSpeed(byte , byte );
 
 private:

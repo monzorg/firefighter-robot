@@ -40,7 +40,7 @@ void setup() {
     Wire.begin();
     //Scheduler.startLoop([]{Serial.println(c->read());});
 
-    c = new Compass(MMPU9250);
+    //c = new Compass(MMPU9250);
     //Second Tone: Finish initial code loading
     tone(8, 1000, 300);
     delay(300 * 1.30);
@@ -92,6 +92,8 @@ void setup() {
     rgb_strip[0] = CRGB(0,0,0);
     rgb_strip[1] = CRGB(0,0,0);
     FastLED.show();
+
+    //digitalWrite(MFP, HIGH); ///DEBUG ONLY!
 }
 
 /**
@@ -99,7 +101,7 @@ void setup() {
 */
 void loop() {
     px.read();
-    c->read();
+    //c->read();
     if(Debug) {
       /*
         if(px.Front >= MPXDV) Serial.print("*");
@@ -126,8 +128,8 @@ void loop() {
         }); Serial.println(key);*/
 
         //Compass
-        Serial.print("C\t");
-        Serial.println(c->val);
+        //Serial.print("C\t");
+        //Serial.println(c->val);
 
         //Line Detector
         Serial.print("LD\tL");
@@ -164,37 +166,15 @@ void loop() {
         Serial.println(ts.read(8));
 
         //delay(1000);
-        //delay(400);
-        /*Serial.write(27);
+        delay(400);
+        Serial.write(27);
         Serial.print("[2J"); // clear screen
         Serial.write(27); // ESC
-        Serial.print("[H");*/
+        Serial.print("[H");
         return;
     }
+    //ai.init(m, px, ts);
 
-    m.forward(LEFT, 255);
-    m.backward(RIGHT, 255);
-    const unsigned int cv = c->read();
-    const unsigned int acv = cv + 120;
-    bool bcv = false;
-    int pang;
-    int ang;
-    if(acv > 360) {
-        pang = acv - 360;
-        bcv = true;
-    }
-    else pang = acv;
-    while(ang < 120 && ang != 359) {
-        if(bcv && cv > c->read()) {
-            ang = 360 - abs(cv - c->read());
-        }
-        else ang = c->read() - cv;
-        Serial.print(c->read());
-        Serial.print("\t");
-        Serial.println(ang);
-    }
-    m.forward(0);
-    delay(100);
     //ai.isInsideRoom(m);
     //m.forward(0);
 

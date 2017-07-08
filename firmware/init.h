@@ -8,7 +8,7 @@
 #include <AnalogButtons.h>
 
 #include "motor.h"
-#include "compass.h"
+//#include "compass.h"
 #include "px.h"
 //#include "IR.h"
 #include "AI.h"
@@ -19,10 +19,10 @@ bool remoteDebug = false;
 bool Debug = false;
 
 CRGB rgb_strip[MRGBLN];
-AI ai;
+AI ai(KNOWN);
 Motor m(MMLD, MMRD, MMLP, MMRP);
 PX px(MPXL, MPXR, MPXF);
-Compass* c = new Compass();
+//Compass* c = new Compass();
 //IR ir;
 TPASensor ts;
 
