@@ -27,7 +27,8 @@
 #define MPXF   A0 // Front
 #define MPXL   A1 // Left
 #define MPXR   A2 // Right
-#define MPXDM  310 // Direction Max Value
+#define MPXDM  305 // Direction Max Value
+#define MPXHW 136 // Hallway PX Max Value
 #define MPXDRD 1000 // Door Rotate Delay
 #define MPXFM  475 // Front Max Value
 /// PX Error Correction
