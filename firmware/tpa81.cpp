@@ -10,7 +10,7 @@ byte TPASensor::read(byte reg_val) {
   Wire.write(reg_val+1); // Send reg to TPA81
   Wire.endTransmission();
   Wire.requestFrom(MTSA, 1); // Request 1 byte
-  while(Wire.available() < 1); // Wait for byte to arrive
+  //while(Wire.available() < 1); // Wait for byte to arrive
   val[reg_val] = Wire.read(); // Get byte
   return val[reg_val];
 }
