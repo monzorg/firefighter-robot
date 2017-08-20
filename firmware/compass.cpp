@@ -57,7 +57,7 @@ unsigned int Compass::uread() {
 
     //request the high and low byte from register 2
     Wire.requestFrom(MCA, 2);
-    while(Wire.available() < 2);
+    //while(Wire.available() < 2);
     byte highB = Wire.read();
     byte lowB = Wire.read();
     uval = ((highB<<8) + lowB)/10;
