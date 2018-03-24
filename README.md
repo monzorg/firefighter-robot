@@ -5,7 +5,7 @@ Firefighter Robot firmware based on Arduino Board (mBot Board - mCore)
 - FastLED
 - AnalogButtons
 
-## Circuits Pinout
+## Circuit Pinout
 ![IMG1](docs/circuit_scheme.png)
 
 ### Contributors
